@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Header } from "./components/Header";
-import { Tasks } from "./components/Tasks";
-import { Time } from "./components/Time";
+import { ToastContainer, toast } from "react-toastify";
+import { Header, Tasks, Time } from "./components";
 import "./App.css";
 
 // Define the key for local storage
@@ -60,11 +59,17 @@ function App() {
   const deleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     saveTasks(updatedTasks);
+    toast.success(`The todo was deleted successfully`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
   };
 
   // Render the App component
   return (
     <>
+      <ToastContainer />
       <Header onAddTask={addTask} />
       <Tasks
         tasks={tasks}

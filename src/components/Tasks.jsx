@@ -1,7 +1,6 @@
 import { Task } from "./Task";
 import { PropTypes } from "prop-types";
 
-// Define the Tasks component
 export const Tasks = ({ tasks, onComplete, onDelete }) => {
   // Calculate the total number of tasks, completed tasks, and uncompleted tasks
   const todoTotal = tasks.length;

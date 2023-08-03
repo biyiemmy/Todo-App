@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { FaPlus } from "react-icons/fa";
 
-// Define the Header component
 export const Header = ({ onAddTask }) => {
   // Define state variables for title and text
   const [title, setTitle] = useState("");
@@ -13,11 +13,29 @@ export const Header = ({ onAddTask }) => {
     e.preventDefault();
 
     // Validate the title field
-    if (title.trim() === "" || text.trim() === "") {
-      alert("Please enter a todo title and description");
+    if (title.trim() === "") {
+      // alert("Please enter a todo title and description");
+      toast.error("Please enter a title.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
+      return;
+    } else if (text.trim() === "") {
+      toast.error("Please enter a description", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
+      return;
     } else {
       // Display success message and call onAddTask function
-      alert(`The "${title}" todo was created successfully`);
+      // alert(`The "${title}" todo was created successfully`);
+      toast.success(`The ${title} todo was created successfully`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
       // Pass both title and text to onAddTask function
       onAddTask(title, text);
       // Clear the title field
@@ -40,7 +58,7 @@ export const Header = ({ onAddTask }) => {
   return (
     <>
       <header className="flex items-center justify-center relative h-48 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4 md:p-6 text-white">
-        <h3 className="text-4xl font-bold mb-4">Todo_App</h3>
+        <h3 className="text-4xl font-bold mb-4">Todo App</h3>
 
         <form
           className="absolute md:flex h-14 bottom-[-27px] w-full max-w-[736px] flex px-1 py-0 gap-8"
@@ -51,7 +69,7 @@ export const Header = ({ onAddTask }) => {
             type="text"
             onChange={onChangeTitle}
             value={title}
-            className="w-full px-4 h-full bg-gray-800 border-none p-2 mb-2 border rounded-md focus:outline-none focus:border-blue-300"
+            className="w-full px-4 h-full bg-gray-800 border-none mb-2 border rounded-md focus:outline-none focus:border-blue-300"
           />
 
           <input
