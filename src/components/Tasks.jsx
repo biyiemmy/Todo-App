@@ -1,4 +1,3 @@
-// Import required modules and components
 import { Task } from "./Task";
 import { PropTypes } from "prop-types";
 
@@ -9,29 +8,33 @@ export const Tasks = ({ tasks, onComplete, onDelete }) => {
   const completedTasks = tasks.filter((task) => task.isCompleted).length;
   const unCompletedTasks = tasks.filter((task) => !task.isCompleted).length;
 
-  // Render the Tasks component
   return (
     <>
-      <section className="tasks">
-        <header className="header">
-          <div>
-            <p>Created tasks</p>
-            <span>{todoTotal}</span>
+      <section className="tasks w-full max-w-[736px] mx-auto px-4 min-h-screen mt-16 pt-2">
+        <header className="header flex flex-col md:flex-row items-center justify-between mb-4 px-6 md:px-12">
+          <div className="flex flex-row md:flex-row items-center gap-2">
+            <p className="text-blue-500 font-bold">Created tasks</p>
+            <span className="bg-gray-800 px-3 py-1 rounded-full text-xs font-bold text-gray-600 md:ml-2">
+              {todoTotal}
+            </span>
           </div>
 
-          <div>
-            <p className="textPurple">Completed tasks</p>
-            <span>{completedTasks}</span>
+          <div className="flex flex-row md:flex-row items-center gap-2 mt-4 md:mt-0">
+            <p className="font-bold text-purple-600">Completed tasks</p>
+            <span className="bg-gray-800 px-3 py-1 rounded-full text-xs font-bold text-gray-600 md:ml-2">
+              {completedTasks}
+            </span>
           </div>
 
-          <div>
-            <p className="textPurple">Uncompleted tasks</p>{" "}
-            <span>{unCompletedTasks}</span>
+          <div className="flex flex-row md:flex-row items-center gap-2 mt-4 md:mt-0">
+            <p className="font-bold text-purple-600">Uncompleted tasks</p>
+            <span className="bg-gray-800 px-3 py-1 rounded-full text-xs font-bold text-gray-600 md:ml-2">
+              {unCompletedTasks}
+            </span>
           </div>
         </header>
 
-        <div className="list">
-          {/* Render Task component for each task */}
+        <div className="grid gap-3 mx-auto px-6 md:px-12 max-w-screen-lg">
           {tasks.map((task) => (
             <Task
               key={task.id}

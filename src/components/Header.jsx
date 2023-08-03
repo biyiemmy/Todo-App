@@ -1,4 +1,3 @@
-// Import required modules and components
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { FaPlus } from "react-icons/fa";
@@ -38,26 +37,33 @@ export const Header = ({ onAddTask }) => {
     setText(e.target.value);
   };
 
-  // Render the Header component
   return (
     <>
-      <header className="top">
-        <h3>todo_App</h3>
+      <header className="flex items-center justify-center relative h-48 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4 md:p-6 text-white">
+        <h3 className="text-4xl font-bold mb-4">Todo_App</h3>
 
-        <form className="newTaskForm" onSubmit={handleSubmit}>
+        <form
+          className="absolute md:flex h-14 bottom-[-27px] w-full max-w-[736px] flex px-1 py-0 gap-8"
+          onSubmit={handleSubmit}
+        >
           <input
-            placeholder="Todo title"
+            placeholder="Title..."
             type="text"
             onChange={onChangeTitle}
             value={title}
+            className="w-full px-4 h-full bg-gray-800 border-none p-2 mb-2 border rounded-md focus:outline-none focus:border-blue-300"
           />
-          <textarea
-            placeholder="Todo description"
+
+          <input
+            placeholder="Description..."
+            type="text"
             onChange={onChangeText}
             value={text}
-          ></textarea>
-          <button>
-            Create <FaPlus size={20} />
+            className="w-full px-4 bg-gray-800 p-2 border-none mb-2 h-full border rounded-md resize-none focus:outline-none focus:border-blue-300"
+          ></input>
+
+          <button className="h-full px-4 bg-blue-600 text-white border-none gap-6 font-bold text-sm hover:bg-blue-600 py-2 rounded-md flex items-center">
+            Create <FaPlus className="ml-1" size={20} />
           </button>
         </form>
       </header>
